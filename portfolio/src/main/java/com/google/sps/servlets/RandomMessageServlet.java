@@ -19,8 +19,26 @@ public class RandomMessageServlet extends HttpServlet {
         messages.add("first message");
         messages.add("second message");
         messages.add("third message");
-        response.setContentType("text/html;");
-        response.getWriter().println(messages);
+        // Convert messages to JSON
+        String json = convertToJson(messages);
+
+        // Send the JSON as the response
+        response.setContentType("application/json;");
+        response.getWriter().println(json);
     }
+    private String convertToJson(ArrayList<String> messages) {
+        String json = "{";
+        json += "\"one\": ";
+        json += "\"" + messages.get(0) + "\"";
+        json += ", ";
+        json += "\"two\": ";
+        json += "\"" + messages.get(1) + "\"";
+        json += ", ";
+        json += "\"three\": ";
+        json += "\"" + messages.get(2) + "\"";
+        json += "}";
+        return json;
+      }
+
 
 }

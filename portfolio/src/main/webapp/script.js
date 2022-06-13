@@ -34,3 +34,30 @@ async function showServerTime() {
     const dateContainer = document.getElementById('date-container');
     dateContainer.innerText = textFromResponse;
 }
+
+/** Fetches messages from the server and adds them to the page. */
+async function getMessage(){
+    const responseFromServer = await fetch('/random-message');
+  // The json() function returns an object that contains fields that we can
+  // reference to create HTML.
+    const messages = await responseFromServer.json();
+    console.log(messages);
+
+    const messageListElement = document.getElementById('message-container');
+
+    messageListElement.innerHTML = "";
+    
+    messageListElement.appendChild(
+        createListElement("1" + messages.one));    
+    messageListElement.appendChild(
+        createListElement("2" + messages.two));
+    messageListElement.appendChild(
+        createListElement("3" + messages.three));
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
+}
