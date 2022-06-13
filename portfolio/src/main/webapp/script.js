@@ -33,4 +33,4 @@ async function showServerTime() {
   
     const dateContainer = document.getElementById('date-container');
     dateContainer.innerText = textFromResponse;
-  }
+}
