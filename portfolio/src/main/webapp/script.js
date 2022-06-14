@@ -41,23 +41,31 @@ async function getMessage(){
   // The json() function returns an object that contains fields that we can
   // reference to create HTML.
     const messages = await responseFromServer.json();
-    console.log(messages);
+    
 
     const messageListElement = document.getElementById('message-container');
 
     messageListElement.innerHTML = "";
-    
-    messageListElement.appendChild(
-        createListElement("1" + messages.one));    
-    messageListElement.appendChild(
-        createListElement("2" + messages.two));
-    messageListElement.appendChild(
-        createListElement("3" + messages.three));
+    // console.log(messages);
+    const length = Object.keys(messages).length;;
+    // console.log(length);
+    const randomNum = Math.floor(Math.random() * length );
+    console.log(randomNum);
+    if (randomNum == 0) {
+        messageListElement.appendChild(
+        createParagraphElement(messages.one));  
+    } else if (randomNum == 1) {        
+        messageListElement.appendChild(
+        createParagraphElement(messages.two));
+    } else {
+        messageListElement.appendChild(
+        createParagraphElement(messages.three));
+    }
 }
 
 /** Creates an <li> element containing text. */
-function createListElement(text) {
-    const liElement = document.createElement('li');
-    liElement.innerText = text;
-    return liElement;
+function createParagraphElement(text) {
+    const paragraphElement = document.createElement('p');
+    paragraphElement.innerText = text;
+    return paragraphElement;
 }
