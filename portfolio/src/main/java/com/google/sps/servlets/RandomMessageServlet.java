@@ -20,7 +20,7 @@ public class RandomMessageServlet extends HttpServlet {
         messages.add("second message");
         messages.add("third message");
         // Convert messages to JSON
-        String json = convertToJson(messages);
+        String json = convertToJsonUsingGson(messages);
 
         // Send the JSON as the response
         response.setContentType("application/json;");
@@ -40,5 +40,9 @@ public class RandomMessageServlet extends HttpServlet {
         return json;
       }
 
-
+      private String convertToJsonUsingGson(ArrayList<String> messages) {
+        Gson gson = new Gson();
+        String json = gson.toJson(messages);
+        return json;
+      }
 }
