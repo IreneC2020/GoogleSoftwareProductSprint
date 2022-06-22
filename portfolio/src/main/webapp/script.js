@@ -26,3 +26,46 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+async function showServerTime() {
+    const responseFromServer = await fetch('/date');
+    const textFromResponse = await responseFromServer.text();
+  
+    const dateContainer = document.getElementById('date-container');
+    dateContainer.innerText = textFromResponse;
+}
+
+/** Fetches messages from the server and adds them to the page. */
+async function getMessage(){
+    const responseFromServer = await fetch('/random-message');
+  // The json() function returns an object that contains fields that we can
+  // reference to create HTML.
+    const messages = await responseFromServer.json();
+    
+
+    const messageListElement = document.getElementById('message-container');
+
+    messageListElement.innerHTML = "";
+    // console.log(messages);
+    const length = Object.keys(messages).length;;
+    // console.log(length);
+    const randomNum = Math.floor(Math.random() * length );
+    console.log(randomNum);
+    if (randomNum == 0) {
+        messageListElement.appendChild(
+        createParagraphElement(messages.one));  
+    } else if (randomNum == 1) {        
+        messageListElement.appendChild(
+        createParagraphElement(messages.two));
+    } else {
+        messageListElement.appendChild(
+        createParagraphElement(messages.three));
+    }
+}
+
+/** Creates an <li> element containing text. */
+function createParagraphElement(text) {
+    const paragraphElement = document.createElement('p');
+    paragraphElement.innerText = text;
+    return paragraphElement;
+}
