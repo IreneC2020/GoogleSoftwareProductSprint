@@ -43,27 +43,36 @@ async function getMessage(){
     const messages = await responseFromServer.json();
     
 
-    const messageListElement = document.getElementById('message-container');
+    const messageParagraphElement = document.getElementById('message-container');
 
-    messageListElement.innerHTML = "";
-    // console.log(messages);
-    const length = Object.keys(messages).length;;
+    messageParagraphElement.innerHTML = "";
+    /** using convertToJsonUsingGson() messages is an array of strings */
+    console.log(messages);
+    
+    const length = messages.length;
     // console.log(length);
+    
     const randomNum = Math.floor(Math.random() * length );
     console.log(randomNum);
-    if (randomNum == 0) {
-        messageListElement.appendChild(
-        createParagraphElement(messages.one));  
-    } else if (randomNum == 1) {        
-        messageListElement.appendChild(
-        createParagraphElement(messages.two));
-    } else {
-        messageListElement.appendChild(
-        createParagraphElement(messages.three));
-    }
+    
+    messageParagraphElement.appendChild(createParagraphElement(messages[randomNum])); 
+    
+    /** using convertToJson() messages is an array of objects*/ 
+
+    // const length = Object.keys(messages).length;
+    // if (randomNum == 0) {
+    //     messageParagraphElement.appendChild(
+    //     createParagraphElement(messages.one));  
+    // } else if (randomNum == 1) {        
+    //     messageParagraphElement.appendChild(
+    //     createParagraphElement(messages.two));
+    // } else {
+    //     messageParagraphElement.appendChild(
+    //     createParagraphElement(messages.three));
+    // }
 }
 
-/** Creates an <li> element containing text. */
+/** Creates an <p> element containing text. */
 function createParagraphElement(text) {
     const paragraphElement = document.createElement('p');
     paragraphElement.innerText = text;
