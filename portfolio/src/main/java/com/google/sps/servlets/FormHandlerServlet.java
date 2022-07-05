@@ -21,6 +21,21 @@ public class FormHandlerServlet extends HttpServlet {
     // Write the value to the response so the user can see it.
     response.setContentType("text/html;");
     response.getWriter().println("You submitted: " + textValue + " </br><h3>Thank you for submitting your information!</h3>");
+    // " <!DOCTYPE html>"+
+    // "<html>"+
+    //   "<head>"+
+    //     "<meta charset=\"UTF-8\">"+
+    //     "<title>My Projects</title>"+
+    //     "<link rel=\"stylesheet\" href=\"style.css\">"+
+    //     +"<script src=\"script.js\"></script>"+
+    //   "</head>"+
+    //   "<body>"_+
+    //     <div class ="content">
+    //     <h1>Thank you for submitting your information!</h1>
+        
+    //     </div>
+    //   </body>
+    // </html>>");
 
     // response.sendRedirect("./thankyou.html");
   }
